@@ -5,7 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
-# List or delete all users, or create a new user
+# List all users, or create a new user
 class UsersList(APIView):
     def get(self, request):
         users = Users.objects.all().order_by('username')
