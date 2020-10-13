@@ -1,7 +1,7 @@
-from django.urls import include, path
+from django.urls import path
 from myapi import views 
  
 urlpatterns = [ 
-    path('users/', views.users_list),
-    path('users/<int:pk>/', views.user_detail),
+    path('users/', views.UsersList.as_view()),
+    path('users/<int:pk>/', views.UserDetail.as_view()),
 ]
