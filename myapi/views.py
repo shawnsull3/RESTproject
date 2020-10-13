@@ -1,16 +1,4 @@
-# from rest_framework import viewsets
-
-# from .serializers import UsersSerializer
-# from .models import Users
-
-# # ModelViewSet handles GET & POST routes for Users
-# class UsersViewSet(viewsets.ModelViewSet):
-#     queryset = Users.objects.all().order_by('username')
-#     serializer_class = UsersSerializer
-
-
-from django.shortcuts import render
-
+######################## function based views ######################
 from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser 
 from rest_framework import status
@@ -19,7 +7,7 @@ from .serializers import UsersSerializer
 from .models import Users
 from rest_framework.decorators import api_view
 
-
+# List or delete all users, or create a new user
 @api_view(['GET', 'POST', 'DELETE'])
 def users_list(request):
     if request.method == 'GET':
@@ -40,7 +28,7 @@ def users_list(request):
         count = Users.objects.all().delete()
         return JsonResponse({'message': '{} Users were deleted successfully!'.format(count[0])}, status=status.HTTP_204_NO_CONTENT)
  
- 
+# Retrieve, update or delete a user
 @api_view(['GET', 'PUT', 'DELETE'])
 def user_detail(request, pk):
     try: 
